@@ -124,14 +124,11 @@ HTMLActuator.prototype.clearMessage = function () {
 };
 
 HTMLActuator.prototype.scoreTweetButton = function () {
-  var tweet = document.createElement("a");
+  var tweet = document.createElement("div");
   tweet.classList.add("twitter-share-button");
-  tweet.setAttribute("href", "https://twitter.com/share");
-  tweet.setAttribute("data-via", "gabrielecirulli");
-  tweet.textContent = "Tweet";
+  tweet.textContent = "Are u Happy?";
 
-  var text = "I scored " + this.score + " points at 2048, a game where you " +
-             "join numbers to score high! #2048game #2048ai";
+  var text = "";
   tweet.setAttribute("data-text", text);
 
   return tweet;

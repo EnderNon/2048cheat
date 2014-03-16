@@ -10,9 +10,9 @@ function Grid(size) {
 
 // pre-allocate these objects (for speed)
 Grid.prototype.indexes = [];
-for (var x=0; x<4; x++) {
+for (var x=0; x<8; x++) {
   Grid.prototype.indexes.push([]);
-  for (var y=0; y<4; y++) {
+  for (var y=0; y<8; y++) {
     Grid.prototype.indexes[x].push( {x:x, y:y} );
   }
 }
@@ -120,7 +120,7 @@ Grid.prototype.addStartTiles = function () {
 // Adds a tile in a random position
 Grid.prototype.addRandomTile = function () {
   if (this.cellsAvailable()) {
-    var value = Math.random() < 0.9 ? 2 : 4;
+    var value = 4503599627370496//Math.random() < 0.9 ? 2 : 4;
     //var value = Math.random() < 0.9 ? 256 : 512;
     var tile = new Tile(this.randomAvailableCell(), value);
 
@@ -204,7 +204,7 @@ Grid.prototype.move = function (direction) {
           score += merged.value;
 
           // The mighty 2048 tile
-          if (merged.value === 2048) {
+          if (merged.value === 9007199254740992) {
             won = true;
           }
         } else {
@@ -523,8 +523,8 @@ Grid.prototype.monotonicity2 = function() {
 
 Grid.prototype.maxValue = function() {
   var max = 0;
-  for (var x=0; x<4; x++) {
-    for (var y=0; y<4; y++) {
+  for (var x=0; x<8; x++) {
+    for (var y=0; y<8; y++) {
       if (this.cellOccupied(this.indexes[x][y])) {
         var value = this.cellContent(this.indexes[x][y]).value;
         if (value > max) {
@@ -561,14 +561,13 @@ Grid.prototype.valueSum = function() {
   return sum;
 }
 */
-
 // check for win
 Grid.prototype.isWin = function() {
   var self = this;
-  for (var x=0; x<4; x++) {
-    for (var y=0; y<4; y++) {
+  for (var x=0; x<8; x++) {
+    for (var y=0; y<8; y++) {
       if (self.cellOccupied(this.indexes[x][y])) {
-        if (self.cellContent(this.indexes[x][y]).value == 2048) {
+        if (self.cellContent(this.indexes[x][y]).value == 9007199254740992) {
           return true;
         }
       }
